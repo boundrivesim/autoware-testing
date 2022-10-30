@@ -2,11 +2,11 @@ version: '3.9'
 
 services:
   autoware:
-    image: ghcr.io/autowarefoundation/autoware-universe:latest-prebuilt
+    image: ghcr.io/bouncmpe/autoware-runtime:galactic
     container_name: autoware-prebuilt
-
+    network_mode: "host"
+    
   testing:
     image: ghcr.io/bouncmpe/autoware-testing:galactic
     container_name: autoware-testing
-
-network_mode: "host"
+    network_mode: "host"
