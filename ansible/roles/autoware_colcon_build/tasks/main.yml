@@ -1,0 +1,12 @@
+- name: Install dependencies for setting up apt source
+  become: true
+  ansible.builtin.apt:
+    name:
+      - build-essential 
+      - cmake 
+      - python3-colcon-common-extensions 
+    update_cache: true
+
+- name: Build sources
+  ansible.builtin.shell: cd {{ autoware_dir }} && colcon build
+  changed_when: false

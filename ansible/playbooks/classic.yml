@@ -1,0 +1,16 @@
+- hosts: localhost
+  connection: local
+  vars:
+    - autoware_dir: /tmp/autoware
+    - autoware_src: "{{ autoware_dir }}/src"
+    - autoware_install: "/opt/autoware/{{ rosdistro }}"
+    - rosdistro: galactic
+    - installation_type: ros-base
+
+  roles:
+    - role: bouncmpe.autoware.ros2
+    - role: bouncmpe.autoware.rmw_implementation
+    - role: bouncmpe.autoware.pacmod
+    - role: bouncmpe.autoware.autoware_repos_vcstool
+    - role: bouncmpe.autoware.autoware_rosdep
+    - role: bouncmpe.autoware.autoware_colcon_build

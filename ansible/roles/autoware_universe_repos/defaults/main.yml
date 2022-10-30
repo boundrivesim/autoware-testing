@@ -1,0 +1,2 @@
+autoware_dir: $HOME/autoware
+autoware_src: "{{ autoware_dir }}/src"

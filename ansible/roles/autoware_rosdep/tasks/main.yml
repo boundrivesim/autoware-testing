@@ -1,0 +1,23 @@
+- name: Install dependencies for setting up apt source
+  become: true
+  ansible.builtin.apt:
+    name:
+      - python3-rosdep 
+    update_cache: true
+
+- name: Check rosdep init
+  stat:
+    path: /etc/ros/rosdep/
+  register: rosdep_init
+
+- name: rosdep init
+  ansible.builtin.shell: rosdep init 
+  become: yes
+  when: not rosdep_init.stat.exists
+   
+- name: rosdep update
+  ansible.builtin.shell: cd {{ autoware_dir }} && rosdep update
+
+- name: rosdep install
+  ansible.builtin.shell: cd {{ autoware_dir }} && DEBIAN_FRONTEND=noninteractive rosdep install -y --ignore-src --from-paths src --rosdistro {{ rosdistro }} 
+  changed_when: false
