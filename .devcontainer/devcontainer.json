@@ -1,0 +1,12 @@
+// .devcontainer/devcontainer.json
+{
+    "name": "bouncmpe",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "runArgs": ["--rm"],
+    "remoteUser": "bouncmpe",
+    "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+    }
+}
