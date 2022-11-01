@@ -1,3 +1,8 @@
+# ansible playbook
+#
+# See: https://docs.ansible.com/ansible/latest/galaxy/user_guide.html
+# Use: ansible-playbook repos.yml
+
 - hosts: localhost
   connection: local
   vars:
@@ -9,8 +14,8 @@
 
   roles:
     - role: bouncmpe.autoware.ros2
-    - role: bouncmpe.autoware.rmw_implementation
-    - role: bouncmpe.autoware.pacmod
-    - role: bouncmpe.autoware.autoware_repos_vcstool
+    - role: bouncmpe.autoware.autoware_core_repos
+    - role: bouncmpe.autoware.autoware_universe_repos
+    - role: bouncmpe.autoware.autoware_build_deps
     - role: bouncmpe.autoware.autoware_rosdep
     - role: bouncmpe.autoware.autoware_colcon_build
