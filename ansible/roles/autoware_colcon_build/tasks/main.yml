@@ -2,11 +2,16 @@
   become: true
   ansible.builtin.apt:
     name:
-      - build-essential 
-      - cmake 
-      - python3-colcon-common-extensions 
+      - python3-colcon-common-extensions
+      - python3-colcon-mixin
     update_cache: true
 
 - name: Build sources
-  ansible.builtin.shell: cd {{ autoware_dir }} && colcon build
+  ansible.builtin.shell: >-
+    export GeographicLib_INCLUDE_DIR=/usr/include &&
+    source /opt/ros/{{ rosdistro }}/setup.bash && 
+    colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
+  args:
+    executable: /bin/bash
+    chdir: "{{ autoware_dir }}"
   changed_when: false

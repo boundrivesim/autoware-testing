@@ -5,19 +5,22 @@
       - python3-rosdep 
     update_cache: true
 
-- name: Check rosdep init
-  stat:
-    path: /etc/ros/rosdep/
-  register: rosdep_init
-
-- name: rosdep init
-  ansible.builtin.shell: rosdep init 
-  become: yes
-  when: not rosdep_init.stat.exists
+- name: Run 'sudo rosdep init'
+  become: true
+  ansible.builtin.command:
+    cmd: rosdep init
+    creates: /etc/ros/rosdep/sources.list.d/20-default.list
    
 - name: rosdep update
-  ansible.builtin.shell: cd {{ autoware_dir }} && rosdep update
+  ansible.builtin.shell: rosdep update
+  args:
+    executable: /bin/bash
+    chdir: "{{ autoware_dir }}"
 
 - name: rosdep install
-  ansible.builtin.shell: cd {{ autoware_dir }} && DEBIAN_FRONTEND=noninteractive rosdep install -y --ignore-src --from-paths src --rosdistro {{ rosdistro }} 
-  changed_when: false
+  ansible.builtin.shell: >-
+    source /opt/ros/{{ rosdistro }}/setup.bash && 
+    DEBIAN_FRONTEND=noninteractive rosdep install -y --ignore-src --from-paths src --rosdistro {{ rosdistro }} 
+  args:
+    executable: /bin/bash
+    chdir: "{{ autoware_dir }}"
