@@ -25,8 +25,8 @@
 - name: Add AutonomouStuff rosdep yaml
   become: true
   ansible.builtin.lineinfile:
-    path: /etc/ros/rosdep/sources.list.d/40-autonomoustuff-public-{{ rosdistro }}.list
-    line: yaml https://s3.amazonaws.com/autonomoustuff-repo/autonomoustuff-public-{{ rosdistro }}.yaml
+    path: /etc/ros/rosdep/sources.list.d/40-autonomoustuff-public-{{ ros_distro }}.list
+    line: yaml https://s3.amazonaws.com/autonomoustuff-repo/autonomoustuff-public-{{ ros_distro }}.yaml
     state: present
     create: true
     mode: 0644

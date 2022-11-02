@@ -5,10 +5,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     sudo \
     git \
     tar curl wget zip unzip gnupg2 \
-    build-essential \
-    cmake \
     python3-pip \
-    python-is-python3 \
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
 
 RUN groupadd work -g 1000 \

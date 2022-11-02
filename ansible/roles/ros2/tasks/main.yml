@@ -10,11 +10,11 @@
       - lsb-release
     update_cache: true
 
-# sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+# sudo curl -sSL https://raw.githubusercontent.com/ros/ros_distro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 - name: Authorize ROS GPG key
   become: true
   ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/ros/rosdistro/master/ros.key
+    url: https://raw.githubusercontent.com/ros/ros_distro/master/ros.key
     dest: /usr/share/keyrings/ros-archive-keyring.gpg
 
 - name: Save result of 'dpkg --print-architecture'
@@ -36,17 +36,17 @@
     state: present
     update_cache: true
 
-- name: Install ros-{{ rosdistro }}-{{ installation_type }}
+- name: Install ros-{{ ros_distro }}-{{ ros_distro_type }}
   become: true
   ansible.builtin.apt:
-    name: ros-{{ rosdistro }}-{{ installation_type }}
+    name: ros-{{ ros_distro }}-{{ ros_distro_type }}
     state: latest
     update_cache: true
 
 - name: Add PATH to .bashrc
   ansible.builtin.lineinfile:
     dest: ~/.bashrc
-    line: source /opt/ros/{{ rosdistro }}/setup.bash
+    line: source /opt/ros/{{ ros_distro }}/setup.bash
     state: present
     create: true
     mode: 0644

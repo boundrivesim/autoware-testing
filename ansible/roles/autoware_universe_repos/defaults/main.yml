@@ -1,2 +1,2 @@
-autoware_dir: $HOME/autoware
-autoware_src: "{{ autoware_dir }}/src"
+autoware_ws: $HOME/autoware
+autoware_src: "{{ autoware_ws }}/src"
