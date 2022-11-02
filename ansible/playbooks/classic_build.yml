@@ -9,8 +9,6 @@
     
   roles:
     - role: bouncmpe.autoware.ros2
-    - role: bouncmpe.autoware.rmw_implementation
-    - role: bouncmpe.autoware.pacmod
     - role: bouncmpe.autoware.autoware_build_deps
     - role: bouncmpe.autoware.autoware_repos_vcstool
     - role: bouncmpe.autoware.autoware_rosdep
