@@ -1,8 +1,3 @@
-# ansible playbook
-#
-# See: https://docs.ansible.com/ansible/latest/galaxy/user_guide.html
-# Use: ansible-playbook repos.yml
-
 - hosts: localhost
   connection: local
   vars:
@@ -14,10 +9,8 @@
     - autoware_install_dir: "/opt/autoware/{{ ros_distro }}"
 
   roles:
-    - role: bouncmpe.autoware.ros2
+    - role: bouncmpe.autoware.get_autoware_repository
     - role: bouncmpe.autoware.get_autoware_build_deps
-    - role: bouncmpe.autoware.autoware_core_repos
-    - role: bouncmpe.autoware.autoware_universe_repos
+    - role: bouncmpe.autoware.get_autoware_deps_vcstool
     - role: bouncmpe.autoware.get_autoware_deps_rosdep
     - role: bouncmpe.autoware.build_autoware_colcon
-
