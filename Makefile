@@ -7,10 +7,7 @@ cruntime:
 install:
 	ansible-galaxy install -r requirements.yml --force
 
-classic_build: install
-	ansible-playbook bouncmpe.autoware.classic_build
-
 build: install
 	ansible-playbook bouncmpe.autoware.build
 
-.PHONY: install build classic_build
+.PHONY: install build

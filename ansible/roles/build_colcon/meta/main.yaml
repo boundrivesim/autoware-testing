@@ -1,0 +1,2 @@
+dependencies:
+  - role: bouncmpe.autoware.get_ros2
